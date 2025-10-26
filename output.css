@@ -2273,3 +2273,18 @@ header[aria-label="Hauptnavigation"]{
 /* === Helpers for extracted inline styles === */
 .nav-gap{ gap: clamp(18px, 3vw, 40px); }
 .contain-layout{ contain: layout; }
+
+/* === FINAL OVERRIDE — Mobile Header centering & burger inset (keep last) === */
+@media (max-width: 767.98px){
+  /* Pill gets fixed side insets: 16px left/right, stays perfectly centered */
+  header[aria-label="Hauptnavigation"]{ 
+    width: calc(100% - 32px) !important; /* 16px margin on both sides */
+  }
+  /* Inner wrapper symmetric padding with safe-area support */
+  header[aria-label="Hauptnavigation"] > div{
+    padding-left: calc(16px + env(safe-area-inset-left, 0px)) !important;
+    padding-right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+  }
+  /* Burger aligns to inner padding, no extra margin pushing it off-screen */
+  #mobileMenuToggle{ margin-right: 0 !important; }
+}
