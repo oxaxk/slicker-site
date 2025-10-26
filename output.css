@@ -2234,7 +2234,6 @@ input[type="checkbox"]:checked + .custom-checkbox::after{ transform:translateX(2
     line-height: 1.05 !important;
   }
 }
-#
 /* === Header Pill: inner padding left/right (no layout shift) === */
 header[aria-label="Hauptnavigation"] > div {
   /* add safe-area insets on iOS + more right padding on mobile */
@@ -2261,12 +2260,15 @@ header[aria-label="Hauptnavigation"]{
 /* === Mobile: Hamburger weiter nach innen (rechts) === */
 @media (max-width: 767.98px){
   #mobileMenuToggle{ 
-    margin-right: calc(28px + env(safe-area-inset-right, 0px)) !important; /* weiter weg + Notch-Rand */
+    margin-right: calc(56px + env(safe-area-inset-right, 0px)) !important; /* weiter weg + Notch-Rand */
   }
 }
 
 @media (max-width: 767.98px){
-  header[aria-label="Hauptnavigation"]{ width: 92% !important; }
+  header[aria-label="Hauptnavigation"] > div {
+    padding-right: calc(2.75rem + env(safe-area-inset-right, 0px)) !important;
+  }
+  header[aria-label="Hauptnavigation"]{ width: 90% !important; }
 }
 /* === Helpers for extracted inline styles === */
 .nav-gap{ gap: clamp(18px, 3vw, 40px); }
