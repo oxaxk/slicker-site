@@ -66,40 +66,50 @@
   .mobile-overlay__nav a.cta { margin-top: 8px; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; text-align: center; font-weight: 600; }
   .mobile-overlay__footer { margin-top: auto; display: flex; justify-content: center; align-items: center; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 12px); }
   .mobile-overlay__footer img { width: 36px; height: 36px; opacity: .85; }
-  /* Cookie Consent Banner */
-  .cookie-consent { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 70; display: none; }
-  .cookie-consent__card { max-width: 820px; margin: 0 auto; background: rgba(17,24,39,.98); color: #e5e7eb; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; box-shadow: 0 20px 40px rgba(0,0,0,.35); backdrop-filter: blur(6px); }
-  .cookie-consent__body { padding: 16px 18px; display: grid; grid-template-columns: 1fr; gap: 14px; }
-  .cookie-consent__title { font-size: 16px; font-weight: 700; letter-spacing: .01em; color: #fff; margin: 0; }
-  .cookie-consent__text { font-size: 14px; line-height: 1.5; color: #cbd5e1; margin: 0; }
-  .cookie-consent__actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-  .cookie-btn { appearance: none; border: 1px solid transparent; padding: 10px 14px; border-radius: 999px; font-weight: 600; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease; }
+  /* Cookie Consent (centered modal) */
+  .cookie-consent { position: fixed; inset: 0; z-index: 80; display: none; align-items: center; justify-content: center; background: rgba(2,6,23,.55); backdrop-filter: blur(8px); padding: 20px; }
+  .cookie-consent.open { display: flex; }
+  .cookie-consent__card { width: 100%; max-width: 720px; background:
+      radial-gradient(1200px 600px at 10% -10%, rgba(37,99,235,.15), transparent),
+      rgba(15,23,42,.98);
+    color: #e5e7eb; border: 1px solid rgba(255,255,255,.12); border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+  .cookie-consent__body { padding: 24px 26px; display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .cookie-consent__title { font-size: 22px; font-weight: 800; letter-spacing: .01em; color: #fff; margin: 0; }
+  .cookie-consent__text { font-size: 16px; line-height: 1.75; color: #cbd5e1; margin: 0; }
+  .cookie-consent__actions { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; margin-top: 6px; }
+  .cookie-btn { appearance: none; border: 1px solid transparent; padding: 12px 18px; border-radius: 14px; font-weight: 700; cursor: pointer; transition: transform .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease; }
   .cookie-btn:active { transform: translateY(1px); }
-  .cookie-btn--accept { background: #2563eb; color: #fff; }
+  .cookie-btn--reject { background: transparent; color: #e5e7eb; border-color: rgba(255,255,255,.22); }
+  .cookie-btn--reject:hover { background: rgba(255,255,255,.06); }
+  .cookie-btn--accept { background: #2563eb; color: #fff; box-shadow: 0 8px 20px rgba(37,99,235,.35); }
   .cookie-btn--accept:hover { background: #1d4ed8; }
-  .cookie-btn--essentials { background: transparent; color: #e5e7eb; border-color: rgba(255,255,255,.25); }
-  .cookie-btn--essentials:hover { background: rgba(255,255,255,.05); }
-  .cookie-consent a { color: #60a5fa; text-decoration: underline; }
-  @media (min-width: 640px) { .cookie-consent__body { grid-template-columns: auto 1fr auto; gap: 18px; padding: 16px 20px; } }
+  .cookie-consent a { color: #93c5fd; text-decoration: underline; }
+  @media (min-width: 640px) {
+    .cookie-consent__body { grid-template-columns: 1fr; gap: 18px; padding: 28px 30px; }
+  }
+  /* Toggles for granular consent (scoped; no layout impact) */
+  .cookie-consent__toggles{display:grid;gap:10px;margin-top:2px}
+  .cookie-consent__toggles label{display:flex;align-items:center;gap:10px;color:#cbd5e1;font-size:15px}
+  .cookie-consent__toggles input{width:18px;height:18px;accent-color:#2563eb}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
 </head>
 <body class="bg-white">
 <!-- Header -->
-<header class="fixed top-6 left-1/2 -translate-x-1/2 max-w-6xl w-[92%] md:w-[95%] bg-gray-900/90 backdrop-blur-sm rounded-full shadow-lg z-50" role="banner" aria-label="Hauptnavigation">
-<div class="relative w-full px-5 md:px-6 py-4 flex items-center justify-between gap-3 md:gap-6">
-<div class="flex items-center gap-2 ml-4 md:ml-0">
+<header class="fixed top-6 left-1/2 -translate-x-1/2 max-w-6xl w-[95%] bg-[#0f1624] backdrop-blur-sm rounded-full shadow-lg z-50" role="banner" aria-label="Hauptnavigation">
+<div class="relative w-full pl-7 pr-7 md:pl-10 md:pr-12 py-4 flex items-center justify-between gap-3 md:gap-6">
+<a href="index.html" class="flex items-center gap-2 ml-4 md:ml-0" aria-label="Startseite">
 <div class="text-2xl md:text-3xl font-bold tracking-wider text-primary uppercase" role="heading" aria-level="2">SLICKER</div>
 <span class="text-xl md:text-2xl text-white uppercase font-light tracking-[0.2em]">AGENCY</span>
-</div>
+</a>
 <div class="flex items-center gap-3 md:gap-6 ml-auto">
   <nav class="hidden md:flex items-center md:text-[15px] lg:text-[16px] xl:text-[17px] tracking-[0.02em]" style="gap: clamp(18px, 3vw, 40px);">
-    <a href="#about" class="whitespace-nowrap text-white/90 hover:text-primary transition-colors">About</a>
-    <a href="#expertise" class="whitespace-nowrap text-white/90 hover:text-primary transition-colors">Expertise</a>
-    <a href="#projekte" class="whitespace-nowrap text-white/90 hover:text-primary transition-colors">Projekte</a>
-    <a href="#blog" class="whitespace-nowrap text-white/90 hover:text-primary transition-colors">Blog</a>
+    <a href="index.html#about" class="nav-link whitespace-nowrap text-white/90 hover:text-primary transition-colors">About</a>
+    <a href="index.html#expertise" class="nav-link whitespace-nowrap text-white/90 hover:text-primary transition-colors">Expertise</a>
+    <a href="index.html#projekte" class="nav-link whitespace-nowrap text-white/90 hover:text-primary transition-colors">Projekte</a>
+    <a href="index.html#blog" class="nav-link whitespace-nowrap text-white/90 hover:text-primary transition-colors">Blog</a>
   </nav>
-  <a href="#kontakt" class="inline-block bg-primary hover:bg-primary/90 text-white px-5 py-2 !rounded-button whitespace-nowrap ml-4">Kontakt</a>
+  <a href="index.html#kontakt" class="inline-block bg-primary hover:bg-primary/90 text-white px-5 py-2 !rounded-button whitespace-nowrap ml-4">Kontakt</a>
   <button id="mobileMenuToggle" class="md:hidden w-10 h-10 flex items-center justify-center text-white" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu" type="button">
     <i class="ri-menu-line ri-lg"></i>
   </button>
@@ -112,11 +122,11 @@
   <div class="mobile-overlay__panel" role="dialog" aria-modal="true" aria-label="Navigation">
     <button id="mobileMenuClose" class="mobile-overlay__close" aria-label="Menü schließen"><i class="ri-close-line"></i></button>
     <nav class="mobile-overlay__nav">
-      <a href="#about">About</a>
-      <a href="#expertise">Expertise</a>
-      <a href="#projekte">Projekte</a>
-      <a href="#blog">Blog</a>
-      <a href="#kontakt" class="cta">Kontakt</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#expertise">Expertise</a>
+      <a href="index.html#projekte">Projekte</a>
+      <a href="index.html#blog">Blog</a>
+      <a href="index.html#kontakt" class="cta">Kontakt</a>
     </nav>
     <div class="mobile-overlay__footer">
       <img src="./favicon.png" alt="Slicker" width="36" height="36">
@@ -668,6 +678,7 @@ WhatsApp
 <div class="flex space-x-6">
 <a id="footer-impressum" href="/impressum.html" class="text-gray-500 hover:text-white text-sm transition-colors">Impressum</a>
 <a id="footer-datenschutz" href="/datenschutz.html" class="text-gray-500 hover:text-white text-sm transition-colors">Datenschutz</a>
+<a id="footer-cookie-settings" href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Cookie‑Einstellungen</a>
 </div>
 </div>
 </div>
@@ -703,6 +714,28 @@ card.classList.add('hidden');
 const menuButton = document.getElementById('mobileMenuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 const closeBtn = document.getElementById('mobileMenuClose');
+
+// Hide-on-scroll header (down = hide, up = show)
+const headerEl = document.querySelector('header[aria-label="Hauptnavigation"]');
+let lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
+let ticking = false;
+function onScroll(){
+  const y = window.pageYOffset || document.documentElement.scrollTop || 0;
+  if (!headerEl) return;
+  // Add scrolled shadow state
+  if (y > 10) headerEl.classList.add('is-scrolled'); else headerEl.classList.remove('is-scrolled');
+  // Direction detection with small threshold to avoid jitter
+  if (y > lastY + 6) { // scrolling down
+    headerEl.classList.add('is-hidden');
+  } else if (y < lastY - 6) { // scrolling up
+    headerEl.classList.remove('is-hidden');
+  }
+  lastY = y < 0 ? 0 : y;
+  ticking = false;
+}
+window.addEventListener('scroll', function(){ if (!ticking){ window.requestAnimationFrame(onScroll); ticking = true; } });
+// Ensure initial state on load
+onScroll();
 function lockScroll(){ document.body.style.overflow='hidden'; }
 function unlockScroll(){ document.body.style.overflow=''; }
 function openMenu(){
@@ -824,6 +857,8 @@ var impL = document.getElementById('footer-impressum');
 var dseL = document.getElementById('footer-datenschutz');
 if (impL) { impL.href = (location.protocol === 'file:') ? './impressum.html' : '/impressum.html'; }
 if (dseL) { dseL.href = (location.protocol === 'file:') ? './datenschutz.html' : '/datenschutz.html'; }
+// Cookie-Einstellungen footer link
+var cset=document.getElementById('footer-cookie-settings'); if(cset){ cset.addEventListener('click', function(ev){ ev.preventDefault(); if(window.openCookieSettings) window.openCookieSettings(); }); }
 });
 </script>
 <script>
@@ -850,28 +885,25 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function getConsent(){
-    try{ return JSON.parse(localStorage.getItem('cookieConsent_v1')||'null'); }catch(e){ return null; }
+    try{
+      return JSON.parse(localStorage.getItem('cookieConsent_v2') || localStorage.getItem('cookieConsent_v1') || 'null');
+    }catch(e){ return null; }
   }
 
   var btnOnce = document.getElementById('map-load-once');
   var cbRemember = document.getElementById('map-remember-cb');
 
-  if(btnOnce) btnOnce.addEventListener('click', injectMap);
-  if(cbRemember) cbRemember.addEventListener('change', function(){
-    try{
-      if(this.checked){ localStorage.setItem('mapsOptIn','true'); }
-      else { localStorage.removeItem('mapsOptIn'); }
-    }catch(e){}
-  });
+  if(btnOnce) btnOnce.addEventListener('click', function(){ injectMap(); if(cbRemember && cbRemember.checked){ var c=getConsent()||{essential:true,analytics:false,marketing:false,external:false}; c.external=true; try{ if(window.setCookieConsent) window.setCookieConsent(c); else localStorage.setItem('cookieConsent_v2', JSON.stringify(c)); }catch(e){} } });
+  // Removed cbRemember change handler and mapsOptIn logic (now handled via consent.external)
 
   var c = getConsent();
   if(c && (c.analytics || c.marketing)) loadGTM(GTM_ID);
-  try{ if((c && c.marketing) || localStorage.getItem('mapsOptIn')==='true'){ injectMap(); } }catch(e){}
+  try{ if(c && c.external){ injectMap(); } }catch(e){}
 
   window.addEventListener('cookie-consent-updated', function(e){
     var d = (e && e.detail) || {};
     if(d.analytics || d.marketing) loadGTM(GTM_ID);
-    if(d.marketing) injectMap();
+    if(d.external) injectMap();
   });
 });
 </script>
@@ -1139,53 +1171,71 @@ document.addEventListener('DOMContentLoaded', function(){
   loadHistory();
 })();
 </script>
-</body>
-  <!-- Cookie Consent Banner -->
-  <div id="cookie-consent" class="cookie-consent" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
+  <!-- Cookie Consent Modal (centered) -->
+  <div id="cookie-consent" class="cookie-consent" role="dialog" aria-modal="true" aria-labelledby="cc-title">
     <div class="cookie-consent__card">
       <div class="cookie-consent__body">
-        <div class="hidden sm:block" aria-hidden="true">
-          <i class="ri-shield-check-line" style="font-size:24px;color:#93c5fd"></i>
-        </div>
-        <div>
-          <p class="cookie-consent__title">Cookies &amp; externe Dienste</p>
-          <p class="cookie-consent__text">Wir verwenden essenzielle Cookies und binden ggf. externe Inhalte ein. Details in unserer <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
+        <h3 id="cc-title" class="cookie-consent__title">Cookies &amp; externe Dienste</h3>
+        <p class="cookie-consent__text">Wir verwenden essenzielle Cookies und binden ggf. externe Inhalte ein. Details in unserer
+          <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a>.
+        </p>
+        <div class="cookie-consent__toggles" role="group" aria-label="Einwilligungsoptionen">
+          <label><input id="cc-analytics" type="checkbox"> <span>Analytics (z. B. GA4)</span></label>
+          <label><input id="cc-marketing" type="checkbox"> <span>Marketing (z. B. Ads, Remarketing)</span></label>
+          <label><input id="cc-external"  type="checkbox"> <span>Externe Medien (z. B. Google Maps)</span></label>
         </div>
         <div class="cookie-consent__actions">
-          <button id="cookie-essentials" class="cookie-btn cookie-btn--essentials" type="button">Nur essenzielle</button>
+          <button id="cookie-reject" class="cookie-btn cookie-btn--reject" type="button">Ablehnen</button>
+          <button id="cookie-essential" class="cookie-btn cookie-btn--reject" type="button">Nur essenzielle</button>
           <button id="cookie-accept" class="cookie-btn cookie-btn--accept" type="button">Alle akzeptieren</button>
         </div>
       </div>
     </div>
   </div>
   <script>
-  // Cookie consent controller (v1) – integrates with Maps/GTM gating
-  (function(){
-    var el = document.getElementById('cookie-consent');
-    if(!el) return;
-
-    function read(){ try { return JSON.parse(localStorage.getItem('cookieConsent_v1')||'null'); } catch(e){ return null; } }
-    function save(consent){
-      try { localStorage.setItem('cookieConsent_v1', JSON.stringify(consent)); } catch(e){}
-      try { window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: consent })); } catch(e){}
-    }
-    function open(){ el.style.display = 'block'; var a=document.getElementById('cookie-accept'); if(a&&a.focus) a.focus(); }
-    function close(){ el.style.display = 'none'; }
-
-    var stored = read();
-    if(!stored){ open(); }
-
-    var btnEss = document.getElementById('cookie-essentials');
-    var btnAll = document.getElementById('cookie-accept');
-
-    if(btnEss) btnEss.addEventListener('click', function(){
-      save({ essential:true, analytics:false, marketing:false, ts: Date.now() });
-      close();
-    });
-    if(btnAll) btnAll.addEventListener('click', function(){
-      save({ essential:true, analytics:true, marketing:true, ts: Date.now() });
-      close();
-    });
-  })();
+    // Cookie consent controller (modal) – integrates with Maps/GTM gating via 'cookie-consent-updated'
+    (function(){
+      var KEY='cookieConsent_v2';
+      var el = document.getElementById('cookie-consent');
+      if(!el) return;
+      function read(){ try { return JSON.parse(localStorage.getItem(KEY)||'null'); } catch(e){ return null; } }
+      function save(consent){
+        var normalized = {
+          essential: consent.essential !== false,
+          analytics: !!consent.analytics,
+          marketing: !!consent.marketing,
+          external:  !!consent.external,
+          ts: Date.now()
+        };
+        try { localStorage.setItem(KEY, JSON.stringify(normalized)); } catch(e){}
+        try { window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: normalized })); } catch(e){}
+        return normalized;
+      }
+      function open(){
+        el.classList.add('open');
+        var st = read();
+        var a = document.getElementById('cc-analytics');
+        var m = document.getElementById('cc-marketing');
+        var x = document.getElementById('cc-external');
+        if(st){ if(a) a.checked=!!st.analytics; if(m) m.checked=!!st.marketing; if(x) x.checked=!!st.external; }
+        else { if(a) a.checked=false; if(m) m.checked=false; if(x) x.checked=false; }
+        var acc=document.getElementById('cookie-accept'); if(acc&&acc.focus) acc.focus();
+      }
+      function close(){ el.classList.remove('open'); }
+      var btnReject = document.getElementById('cookie-reject');
+      var btnAccept = document.getElementById('cookie-accept');
+      var btnEssential = document.getElementById('cookie-essential');
+      var tAnalytics = document.getElementById('cc-analytics');
+      var tMarketing = document.getElementById('cc-marketing');
+      var tExternal  = document.getElementById('cc-external');
+      if(!read()){ open(); }
+      if(btnReject) btnReject.addEventListener('click', function(){ save({ essential:true, analytics:false, marketing:false, external:false }); close(); });
+      if(btnEssential) btnEssential.addEventListener('click', function(){ save({ essential:true, analytics:false, marketing:false, external:false }); close(); });
+      if(btnAccept) btnAccept.addEventListener('click', function(){ save({ essential:true, analytics:true, marketing:true, external:true }); close(); });
+      window.getCookieConsent = read;
+      window.setCookieConsent = function(p){ return save(p||{}); };
+      window.openCookieSettings = open;
+    })();
   </script>
+</body>
 </html>
