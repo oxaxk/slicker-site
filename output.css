@@ -2268,3 +2268,6 @@ header[aria-label="Hauptnavigation"]{
 @media (max-width: 767.98px){
   header[aria-label="Hauptnavigation"]{ width: 92% !important; }
 }
+/* === Helpers for extracted inline styles === */
+.nav-gap{ gap: clamp(18px, 3vw, 40px); }
+.contain-layout{ contain: layout; }
