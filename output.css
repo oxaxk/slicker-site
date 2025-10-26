@@ -2237,8 +2237,9 @@ input[type="checkbox"]:checked + .custom-checkbox::after{ transform:translateX(2
 #
 /* === Header Pill: inner padding left/right (no layout shift) === */
 header[aria-label="Hauptnavigation"] > div {
-  padding-left: 1.75rem !important;  /* = pl-7 */
-  padding-right: 1.75rem !important; /* = pr-7 */
+  /* add safe-area insets on iOS + more right padding on mobile */
+  padding-left: calc(1.75rem + env(safe-area-inset-left, 0px)) !important;
+  padding-right: calc(2rem + env(safe-area-inset-right, 0px)) !important;
 }
 @media (min-width: 768px) {
   header[aria-label="Hauptnavigation"] > div {
@@ -2260,6 +2261,10 @@ header[aria-label="Hauptnavigation"]{
 /* === Mobile: Hamburger weiter nach innen (rechts) === */
 @media (max-width: 767.98px){
   #mobileMenuToggle{ 
-    margin-right: 16px !important; /* +16px Abstand von der Pillen-Kante */
+    margin-right: calc(28px + env(safe-area-inset-right, 0px)) !important; /* weiter weg + Notch-Rand */
   }
+}
+
+@media (max-width: 767.98px){
+  header[aria-label="Hauptnavigation"]{ width: 92% !important; }
 }
