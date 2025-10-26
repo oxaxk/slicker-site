@@ -2257,18 +2257,7 @@ header[aria-label="Hauptnavigation"]{
 @media (max-width: 767.98px){
   header[aria-label="Hauptnavigation"]{ background: rgba(6,10,18,.92) !important; }
 }
-/* === Mobile: Hamburger weiter nach innen (rechts) === */
-@media (max-width: 767.98px){
-  #mobileMenuToggle{
-    margin-right: calc(12px + env(safe-area-inset-right, 0px)) !important;
-  }
-}
 
-@media (max-width: 767.98px){
-  header[aria-label="Hauptnavigation"] > div {
-    padding-right: calc(1.25rem + env(safe-area-inset-right, 0px)) !important;
-  }
-}
 /* === Helpers for extracted inline styles === */
 .nav-gap{ gap: clamp(18px, 3vw, 40px); }
 .contain-layout{ contain: layout; }
@@ -2285,7 +2274,7 @@ header[aria-label="Hauptnavigation"]{
   /* Symmetric inner padding with safe-area support */
   header[aria-label="Hauptnavigation"] > div{
     padding-left: calc(18px + env(safe-area-inset-left, 0px)) !important;
-    padding-right: calc(28px + env(safe-area-inset-right, 0px)) !important;
+    padding-right: calc(18px + env(safe-area-inset-right, 0px)) !important;
   }
   /* Brand leicht nach innen, aber ohne großen Versatz */
   header[aria-label="Hauptnavigation"] .flex.items-center.gap-2{
@@ -2293,6 +2282,6 @@ header[aria-label="Hauptnavigation"]{
   }
   /* Burger steht an der inneren Paddingkante, nicht am Rand */
   #mobileMenuToggle{
-    margin-right: 10px !important;
+    margin-right: 4px !important;
   }
 }
