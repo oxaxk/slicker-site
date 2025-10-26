@@ -6,7 +6,11 @@
 <meta name="description" content="Wir entwickeln schnelle Websites & Shops mit KI‑Automation. Strategie, Design, Umsetzung – messbar skalierbar in Berlin.">
 <meta property="og:title" content="Slicker Agency – Webdesign, E‑Commerce & KI in Berlin">
 <meta property="og:description" content="Schnelle Websites & Shops mit KI‑Automation – Strategie, Design, Umsetzung.">
-<meta property="og:image" content="https://public.readdy.ai/ai/img_res/6544388e-177d-4848-8a33-67a856fd2410.jpg">
+<meta property="og:image" content="https://slicker.agency/assets/img/slicker1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Slicker Agency – Logo">
 <meta property="og:url" content="https://slicker.agency/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Slicker Agency">
@@ -14,10 +18,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Slicker Agency – Webdesign, E‑Commerce & KI in Berlin">
 <meta name="twitter:description" content="Schnelle Websites & Shops mit KI‑Automation – Strategie, Design, Umsetzung.">
-<meta name="twitter:image" content="https://public.readdy.ai/ai/img_res/6544388e-177d-4848-8a33-67a856fd2410.jpg">
+<meta name="twitter:image" content="https://slicker.agency/assets/img/slicker1.png">
 <link rel="canonical" href="https://slicker.agency/">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://public.readdy.ai" crossorigin>
 <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 <title>Slicker Agency – Webdesign, E‑Commerce & KI in Berlin</title>
 <script type="application/ld+json">
@@ -83,8 +86,8 @@
 </head>
 <body class="bg-white">
 <!-- Header -->
-<header class="fixed top-6 left-1/2 -translate-x-1/2 max-w-6xl w-[95%] bg-gray-900/90 backdrop-blur-sm rounded-full shadow-lg z-50" role="banner" aria-label="Hauptnavigation">
-<div class="relative w-full px-4 md:px-6 py-4 flex items-center justify-between gap-3 md:gap-6">
+<header class="fixed top-6 left-1/2 -translate-x-1/2 max-w-6xl w-[92%] md:w-[95%] bg-gray-900/90 backdrop-blur-sm rounded-full shadow-lg z-50" role="banner" aria-label="Hauptnavigation">
+<div class="relative w-full px-5 md:px-6 py-4 flex items-center justify-between gap-3 md:gap-6">
 <div class="flex items-center gap-2 ml-4 md:ml-0">
 <div class="text-2xl md:text-3xl font-bold tracking-wider text-primary uppercase" role="heading" aria-level="2">SLICKER</div>
 <span class="text-xl md:text-2xl text-white uppercase font-light tracking-[0.2em]">AGENCY</span>
@@ -1155,4 +1158,34 @@ document.addEventListener('DOMContentLoaded', function(){
       </div>
     </div>
   </div>
+  <script>
+  // Cookie consent controller (v1) – integrates with Maps/GTM gating
+  (function(){
+    var el = document.getElementById('cookie-consent');
+    if(!el) return;
+
+    function read(){ try { return JSON.parse(localStorage.getItem('cookieConsent_v1')||'null'); } catch(e){ return null; } }
+    function save(consent){
+      try { localStorage.setItem('cookieConsent_v1', JSON.stringify(consent)); } catch(e){}
+      try { window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: consent })); } catch(e){}
+    }
+    function open(){ el.style.display = 'block'; var a=document.getElementById('cookie-accept'); if(a&&a.focus) a.focus(); }
+    function close(){ el.style.display = 'none'; }
+
+    var stored = read();
+    if(!stored){ open(); }
+
+    var btnEss = document.getElementById('cookie-essentials');
+    var btnAll = document.getElementById('cookie-accept');
+
+    if(btnEss) btnEss.addEventListener('click', function(){
+      save({ essential:true, analytics:false, marketing:false, ts: Date.now() });
+      close();
+    });
+    if(btnAll) btnAll.addEventListener('click', function(){
+      save({ essential:true, analytics:true, marketing:true, ts: Date.now() });
+      close();
+    });
+  })();
+  </script>
 </html>
