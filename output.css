@@ -2234,3 +2234,32 @@ input[type="checkbox"]:checked + .custom-checkbox::after{ transform:translateX(2
     line-height: 1.05 !important;
   }
 }
+#
+/* === Header Pill: inner padding left/right (no layout shift) === */
+header[aria-label="Hauptnavigation"] > div {
+  padding-left: 1.75rem !important;  /* = pl-7 */
+  padding-right: 1.75rem !important; /* = pr-7 */
+}
+@media (min-width: 768px) {
+  header[aria-label="Hauptnavigation"] > div {
+    padding-left: 2.5rem !important;  /* = md:pl-10 */
+    padding-right: 3rem !important;   /* = md:pr-12 */
+  }
+}
+/* === Header: dunkler, glasiger Look === */
+header[aria-label="Hauptnavigation"]{
+  background: rgba(8,12,20,.88) !important; /* dunkler als vorher */
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  backdrop-filter: blur(8px) saturate(140%);
+}
+@media (max-width: 767.98px){
+  header[aria-label="Hauptnavigation"]{ background: rgba(6,10,18,.92) !important; }
+}
+/* === Mobile: Hamburger weiter nach innen (rechts) === */
+@media (max-width: 767.98px){
+  #mobileMenuToggle{ 
+    margin-right: 16px !important; /* +16px Abstand von der Pillen-Kante */
+  }
+}
