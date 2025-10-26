@@ -2268,23 +2268,31 @@ header[aria-label="Hauptnavigation"]{
   header[aria-label="Hauptnavigation"] > div {
     padding-right: calc(1.25rem + env(safe-area-inset-right, 0px)) !important;
   }
-  header[aria-label="Hauptnavigation"]{ width: 92% !important; }
 }
 /* === Helpers for extracted inline styles === */
 .nav-gap{ gap: clamp(18px, 3vw, 40px); }
 .contain-layout{ contain: layout; }
 
-/* === FINAL OVERRIDE — Mobile Header centering & burger inset (keep last) === */
+/* === FINAL OVERRIDE — Mobile Header gutters & stable left/right (keep last) === */
 @media (max-width: 767.98px){
-  /* Pill gets fixed side insets: 16px left/right, stays perfectly centered */
-  header[aria-label="Hauptnavigation"]{ 
-    width: calc(100% - 32px) !important; /* 16px margin on both sides */
+  /* Pill spans between 16px gutters; no center-transform to avoid cut-off */
+  header[aria-label="Hauptnavigation"]{
+    left: 16px !important;
+    right: 16px !important;
+    transform: none !important;
+    width: auto !important;
   }
-  /* Inner wrapper symmetric padding with safe-area support */
+  /* Symmetric inner padding with safe-area support */
   header[aria-label="Hauptnavigation"] > div{
-    padding-left: calc(16px + env(safe-area-inset-left, 0px)) !important;
-    padding-right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+    padding-left: calc(18px + env(safe-area-inset-left, 0px)) !important;
+    padding-right: calc(18px + env(safe-area-inset-right, 0px)) !important;
   }
-  /* Burger aligns to inner padding, no extra margin pushing it off-screen */
-  #mobileMenuToggle{ margin-right: 0 !important; }
+  /* Brand leicht nach innen, aber ohne großen Versatz */
+  header[aria-label="Hauptnavigation"] .flex.items-center.gap-2{
+    margin-left: 4px !important;
+  }
+  /* Burger steht an der inneren Paddingkante, nicht am Rand */
+  #mobileMenuToggle{
+    margin-right: 0 !important;
+  }
 }
