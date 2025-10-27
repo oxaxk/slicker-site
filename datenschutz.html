@@ -111,25 +111,22 @@
                 <div class="mt-4">
                     <button onclick="openCookieSettings()" class="bg-primary text-white px-4 py-2 !rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">Cookie-Einstellungen anpassen</button>
                 </div>
-                <!-- Modal Fenster für Cookie-Einstellungen -->
-                <div id="cookieModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50">
-                  <div class="bg-white rounded-lg max-w-md w-full p-6 shadow-xl text-black relative">
-                    <h3 class="text-lg font-semibold mb-4">Cookie-Einstellungen</h3>
-                    <p class="mb-4">Hier kannst du deine Cookie-Präferenzen anpassen.</p>
-                    <div class="space-y-2">
-                      <label class="flex items-center">
-                        <input type="checkbox" checked disabled class="mr-2"> Notwendige Cookies (immer aktiv)
-                      </label>
-                      <label class="flex items-center">
-                        <input type="checkbox" id="analytics" class="mr-2"> Analyse-Cookies
-                      </label>
-                      <label class="flex items-center">
-                        <input type="checkbox" id="marketing" class="mr-2"> Marketing-Cookies
-                      </label>
-                    </div>
-                    <div class="mt-6 flex justify-end space-x-4">
-                      <button onclick="closeCookieSettings()" class="text-gray-600 hover:text-primary">Abbrechen</button>
-                      <button onclick="saveCookieSettings()" class="bg-primary text-white px-4 py-2 rounded-button hover:bg-primary/90">Speichern</button>
+                <!-- Cookie Consent Modal (index-style) -->
+                <div id="cookie-consent" class="cookie-consent" style="display:none" role="dialog" aria-modal="true" aria-labelledby="cc-title">
+                  <div class="cookie-consent__card">
+                    <div class="cookie-consent__body">
+                      <h3 id="cc-title" class="cookie-consent__title">Cookies & Datenschutz</h3>
+                      <p class="cookie-consent__text">Wir verwenden Cookies, um unsere Website zu verbessern und relevante Inhalte anzuzeigen. Sie können Ihre Auswahl jederzeit anpassen.</p>
+                      <div class="cookie-consent__toggles">
+                        <label><input type="checkbox" checked disabled> Essenzielle Cookies (immer aktiv)</label>
+                        <label><input id="cc-analytics" type="checkbox"> Analyse-Cookies</label>
+                        <label><input id="cc-marketing" type="checkbox"> Marketing-Cookies</label>
+                      </div>
+                      <div class="cookie-consent__actions">
+                        <button id="cc-reject" class="cookie-btn cookie-btn--reject" type="button">Ablehnen</button>
+                        <button id="cc-essential" class="cookie-btn cookie-btn--essential" type="button">Nur essenzielle</button>
+                        <button id="cc-accept" class="cookie-btn cookie-btn--accept" type="button">Alle akzeptieren</button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -360,23 +357,41 @@
     </script>
     <script>
       function openCookieSettings() {
-        document.getElementById('cookieModal').classList.remove('hidden');
-        document.getElementById('cookieModal').classList.add('flex');
+        const el = document.getElementById('cookie-consent');
+        if (!el) return;
+        el.classList.add('open');
+        el.style.display = 'flex';
+        el.setAttribute('aria-hidden','false');
       }
 
       function closeCookieSettings() {
-        document.getElementById('cookieModal').classList.add('hidden');
-        document.getElementById('cookieModal').classList.remove('flex');
+        const el = document.getElementById('cookie-consent');
+        if (!el) return;
+        el.classList.remove('open');
+        el.style.display = 'none';
+        el.setAttribute('aria-hidden','true');
       }
 
       function saveCookieSettings() {
-        const analytics = document.getElementById('analytics').checked;
-        const marketing = document.getElementById('marketing').checked;
-        // Hier könntest du Cookies setzen oder Konfiguration speichern
-        console.log("Analyse-Cookies erlaubt:", analytics);
-        console.log("Marketing-Cookies erlaubt:", marketing);
+        const analytics = document.getElementById('cc-analytics') ? document.getElementById('cc-analytics').checked : false;
+        const marketing = document.getElementById('cc-marketing') ? document.getElementById('cc-marketing').checked : false;
+        try {
+          localStorage.setItem('cookieConsent', JSON.stringify({ choices: { analytics, marketing }, ts: Date.now() }));
+        } catch (e) {}
         closeCookieSettings();
       }
+
+      // Wire buttons inside the modal
+      document.addEventListener('DOMContentLoaded', function(){
+        var reject = document.getElementById('cc-reject');
+        var essential = document.getElementById('cc-essential');
+        var accept = document.getElementById('cc-accept');
+        var a = document.getElementById('cc-analytics');
+        var m = document.getElementById('cc-marketing');
+        if (reject) reject.addEventListener('click', function(){ if(a) a.checked = false; if(m) m.checked = false; saveCookieSettings(); });
+        if (essential) essential.addEventListener('click', function(){ if(a) a.checked = false; if(m) m.checked = false; saveCookieSettings(); });
+        if (accept) accept.addEventListener('click', function(){ if(a) a.checked = true; if(m) m.checked = true; saveCookieSettings(); });
+      });
     </script>
 </body>
 </html>
