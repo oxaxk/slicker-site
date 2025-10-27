@@ -1102,7 +1102,7 @@ document.addEventListener('DOMContentLoaded', function(){
 })();
 </script>
   <!-- Cookie Consent Modal (centered) -->
-  <div id="cookie-consent" class="cookie-consent" role="dialog" aria-modal="true" aria-labelledby="cc-title">
+  <div id="cookie-consent" class="cookie-consent" style="display:none" role="dialog" aria-modal="true" aria-labelledby="cc-title">
     <div class="cookie-consent__card">
       <div class="cookie-consent__body">
         <h3 id="cc-title" class="cookie-consent__title">Cookies &amp; externe Dienste</h3>
@@ -1143,6 +1143,8 @@ document.addEventListener('DOMContentLoaded', function(){
       }
       function open(){
         el.classList.add('open');
+        el.style.display = 'flex';
+        el.setAttribute('aria-hidden','false');
         var st = read();
         var a = document.getElementById('cc-analytics');
         var m = document.getElementById('cc-marketing');
@@ -1151,7 +1153,11 @@ document.addEventListener('DOMContentLoaded', function(){
         else { if(a) a.checked=false; if(m) m.checked=false; if(x) x.checked=false; }
         var acc=document.getElementById('cookie-accept'); if(acc&&acc.focus) acc.focus();
       }
-      function close(){ el.classList.remove('open'); }
+      function close(){
+        el.classList.remove('open');
+        el.style.display = 'none';
+        el.setAttribute('aria-hidden','true');
+      }
       var btnReject = document.getElementById('cookie-reject');
       var btnAccept = document.getElementById('cookie-accept');
       var btnEssential = document.getElementById('cookie-essential');
