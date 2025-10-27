@@ -1925,6 +1925,14 @@ a { text-decoration: none; }
     display: block;
   }
 
+  .md\:inline-block {
+    display: inline-block;
+  }
+
+  .md\:inline-flex {
+    display: inline-flex;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -2313,3 +2321,37 @@ header[aria-label="Hauptnavigation"]{
 
 /* Guard: hide any unstyled fallback that might slip in */
 #cookie-consent:not(.open){ display:none !important; }
+
+/* === LEGAL PAGES (Datenschutz/Impressum) – scoped to content only === */
+/* Use either <body class="legal-page"> OR wrap the legal text in an element with class `.legal-content`. */
+/* We DO NOT set a text color on the wrapper to avoid affecting header/footer/navigation. */
+body.legal-page { background:#fff; }
+.legal-content { background:#fff; }
+
+/* Text colors only inside typical content containers */
+body.legal-page main :where(h1,h2,h3,h4,h5,h6,p,li,td,th,span,a,small,strong,em),
+.legal-content :where(h1,h2,h3,h4,h5,h6,p,li,td,th,span,a,small,strong,em) {
+  color:#0f172a !important;
+}
+
+/* Headings keep strong contrast */
+body.legal-page main :where(h1,h2,h3,h4,h5,h6),
+.legal-content :where(h1,h2,h3,h4,h5,h6) {
+  color:#0f172a !important;
+}
+
+/* Links inside the legal text */
+body.legal-page main a,
+.legal-content a { color:#147889; text-decoration: none; }
+body.legal-page main a:hover,
+.legal-content a:hover { color:#0e7490; text-decoration: underline; }
+
+/* Neutralise “white text” utilities only inside the legal content (not header/footer) */
+.legal-content :is(.text-white,.text-white\/90) { color:#0f172a !important; }
+.legal-content .text-gray-400 { color:#475569 !important; }
+
+/* Readability spacing within the legal text */
+body.legal-page main :is(ul,ol),
+.legal-content :is(ul,ol) { margin:0 0 1rem 1.25rem; }
+body.legal-page main li,
+.legal-content li { margin:0.25rem 0; }
