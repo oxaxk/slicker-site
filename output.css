@@ -2355,3 +2355,13 @@ body.legal-page main :is(ul,ol),
 .legal-content :is(ul,ol) { margin:0 0 1rem 1.25rem; }
 body.legal-page main li,
 .legal-content li { margin:0.25rem 0; }
+
+/* === Fix: Cookie-Modal Kontrast auf Legal-Seiten (Datenschutz/Impressum) === */
+.legal-page #cookie-consent .cookie-consent__title,
+.legal-page #cookie-consent .cookie-consent__text {
+  color: #ffffff !important;
+}
+
+.legal-page #cookie-consent .cookie-consent__toggles label {
+  color: #e5e7eb !important;
+}
